@@ -1,5 +1,5 @@
 import ClientOnly from "./components/ClientOnly";
-import Modal from "./components/modals/Modal";
+import RegisterModal from "./components/modals/RegisterModal";
 import NavBar from "./components/navbar/NavBar";
 import "./globals.css";
 
@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={font.className}>
         <ClientOnly>
-          <Modal isOpen title="Hello world"/>
+          <RegisterModal /> 
           <NavBar />
         </ClientOnly>
 
