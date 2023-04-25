@@ -4,6 +4,7 @@ import NavBar from "./components/navbar/NavBar";
 import "./globals.css";
 
 import { Nunito } from "next/font/google";
+import ToasterProvider from "./providers/ToasterProvider";
 // reserver constant where u can conrol ur title and otehr option
 export const metadata = {
   title: "Air CNC",
@@ -24,7 +25,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={font.className}>
         <ClientOnly>
-          <RegisterModal /> 
+          <ToasterProvider />
+          <RegisterModal />
           <NavBar />
         </ClientOnly>
 

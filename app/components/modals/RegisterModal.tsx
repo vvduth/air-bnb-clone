@@ -1,4 +1,5 @@
 "use client";
+import toast from "react-hot-toast";
 import React from "react";
 import axios from "axios";
 import { AiFillGithub } from "react-icons/ai";
@@ -9,6 +10,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../Input/Input";
+import Button from "../Button";
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
 
@@ -35,6 +37,7 @@ const RegisterModal = () => {
       })
       .catch((e) => {
         console.log(e);
+        toast.error("Something went wrong while submitting the form.");
       })
       .finally(() => {
         setIsLoading(false);
@@ -44,23 +47,23 @@ const RegisterModal = () => {
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading title="Welcome to AirCnc" subTitle="Create an account!" />
-      <Input 
+      <Input
         id="email"
         label="Email"
         disabled={isLoading}
         register={register}
         errors={errors}
         required
-      /> 
-      <Input 
+      />
+      <Input
         id="name"
         label="Name"
         disabled={isLoading}
         register={register}
         errors={errors}
         required
-      /> 
-      <Input 
+      />
+      <Input
         id="password"
         label="Password"
         type="password"
@@ -68,19 +71,44 @@ const RegisterModal = () => {
         register={register}
         errors={errors}
         required
-      /> 
+      />
     </div>
-  )
+  );
+
+  const footerContent = (
+    <div className="flex flex-col gap-4 mt-3">
+      <hr />
+      <Button
+        outline
+        label="Continue with Google?"
+        icon={FcGoogle}
+        onClick={() => {}}
+      />
+      <Button
+        outline
+        label="Continue with Github?"
+        icon={AiFillGithub}
+        onClick={() => {}}
+      />
+      <div className="text-neutral-500 text-center mt-4 font-light">
+        <div className="flex flex-row items-center justify-center gap-2">
+          <div>Already have an account?</div>
+          <div onClick={registerModal.onClose} className="text-neutral-800 cursor-pointer hover:underline">Login</div>
+        </div>
+      </div>
+    </div>
+  );
   return (
-    <Modal 
-        disabled={isLoading}
-        isOpen={registerModal.isOpen}
-        title="Register"
-        actionLabel="Continue"
-        onClose={registerModal.onClose}
-        onSubmit={handleSubmit(onSubmit)}
-        body={bodyContent}
-    /> 
+    <Modal
+      disabled={isLoading}
+      isOpen={registerModal.isOpen}
+      title="Register"
+      actionLabel="Continue"
+      onClose={registerModal.onClose}
+      onSubmit={handleSubmit(onSubmit)}
+      body={bodyContent}
+      footer={footerContent}
+    />
   );
 };
 
