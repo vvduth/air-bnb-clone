@@ -5,6 +5,9 @@ import "./globals.css";
 
 import { Nunito } from "next/font/google";
 import ToasterProvider from "./providers/ToasterProvider";
+import LoginModal from "./components/modals/LoginModal";
+import getCurrentUser from "./actions/getCurrentUser";
+import { SafeUser } from "./types";
 // reserver constant where u can conrol ur title and otehr option
 export const metadata = {
   title: "Air CNC",
@@ -16,18 +19,20 @@ const font = Nunito({
   subsets: ["latin"],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const currentUser  = await getCurrentUser() ; 
   return (
     <html lang="en">
       <body className={font.className}>
         <ClientOnly>
           <ToasterProvider />
+          <LoginModal />
           <RegisterModal />
-          <NavBar />
+          <NavBar currentUser={currentUser}/>
         </ClientOnly>
 
         {children}
