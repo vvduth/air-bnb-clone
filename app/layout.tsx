@@ -8,6 +8,7 @@ import ToasterProvider from "./providers/ToasterProvider";
 import LoginModal from "./components/modals/LoginModal";
 import getCurrentUser from "./actions/getCurrentUser";
 import { SafeUser } from "./types";
+import RentModal from "./components/modals/RentModal";
 // reserver constant where u can conrol ur title and otehr option
 export const metadata = {
   title: "Air CNC",
@@ -32,6 +33,7 @@ export default async function RootLayout({
           <ToasterProvider />
           <LoginModal />
           <RegisterModal />
+          <RentModal />
           <NavBar currentUser={currentUser}/>
         </ClientOnly>
 
