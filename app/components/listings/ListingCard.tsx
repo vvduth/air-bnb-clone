@@ -49,7 +49,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
     if (reservation) {
       return reservation.totalPrice;
     }
-    data.price;
+    return data.price;
   }, [reservation, data.price]);
 
   const reservationDate = useMemo(() => {
