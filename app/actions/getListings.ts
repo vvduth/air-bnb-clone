@@ -11,7 +11,11 @@ export default async function getListings() {
             }
         })
 
-        return listing
+        const safeListing = listing.map((listingItem) => ({
+            ...listingItem, 
+            createdAt: listingItem.createdAt.toISOString(),
+        }))
+        return safeListing
     } catch (error:any) {
         console.log("Bug when return lsiting")
         throw new Error(error)

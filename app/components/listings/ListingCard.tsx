@@ -1,7 +1,7 @@
 "use client";
 
 import useCountries from "@/app/hooks/useCountries";
-import { SafeUser } from "@/app/types";
+import { SafeListing, SafeUser } from "@/app/types";
 import { Listing, Reservation, User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useMemo } from "react";
@@ -10,7 +10,7 @@ import Image from "next/image";
 import HeartButton from "../HeartButton";
 import Button from "../Button";
 interface ListingCardProps {
-  data: Listing;
+  data: SafeListing;
   currentUser?: SafeUser | null;
   reservation?: Reservation;
   onAction?: (id: string) => void;
@@ -64,7 +64,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
 
   return (
     <div
-      onClick={() => router.push(`/lsitings/${data.id}`)}
+      onClick={() => router.push(`/listings/${data.id}`)}
       className="
     col-span-1 cursor-pointer group
   "

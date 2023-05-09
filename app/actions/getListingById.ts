@@ -1,0 +1,40 @@
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+
+import prisma from "@/app/lib/prismadb";
+interface IParams {
+  listingId?: string;
+}
+
+export default async function getListingById(params: IParams) {
+  try {
+    const { listingId } = params;
+
+    const listing = await prisma.listing.findUnique({
+      where: {
+        id: listingId,
+      },
+      include: {
+        user: true,
+      },
+    });
+
+    if (!listing) {
+      console.log("no listing founded");
+      return null;
+    }
+    return {
+      ...listing,
+      createdAt: listing.createdAt.toISOString(),
+      user: {
+        ...listing.user,
+        createdAt: listing.user.createdAt.toISOString(),
+        updatedAt: listing.user.updatedAt.toISOString(),
+        emailVerified: listing.user.emailVerified?.toISOString() || null,
+      },
+    };
+  } catch (error) {
+    console.log("error when fetch 1 item in listing")
+    throw new Error();
+  }
+}
