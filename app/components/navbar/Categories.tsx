@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import Container from "../Container";
 import { TbBeach, TbMountain, TbPool } from "react-icons/tb";
@@ -95,7 +95,8 @@ export const categories = [
   {
     label: "Desert",
     icon: GiCactus,
-    description: "Experience the majesty and tranquility of desert living with our properties located in stunning desert landscapes, offering a unique combination of natural beauty and modern amenities.",
+    description:
+      "Experience the majesty and tranquility of desert living with our properties located in stunning desert landscapes, offering a unique combination of natural beauty and modern amenities.",
   },
   {
     label: "Barn",
@@ -123,15 +124,13 @@ const Categories = () => {
     <Container>
       <div className="pt-4 flex flex-rows items-center justify-between overflow-x-auto">
         {categories.map((item) => (
-          <>
-            <CategoryBox
-              key={item.label}
-              label={item.label}
-              selected={category === item.label}
-              description={item.description}
-              icon={item.icon}
-            />
-          </>
+          <CategoryBox
+            key={item.label}
+            label={item.label}
+            selected={category === item.label}
+            description={item.description}
+            icon={item.icon}
+          />
         ))}
       </div>
     </Container>

@@ -18,7 +18,7 @@ interface UserMenuProps {
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
-  const router = useRouter()
+  const router = useRouter();
   const rentModal = useRentModal();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -65,10 +65,16 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           <div className="flex flex-col cursor-pointer">
             {currentUser ? (
               <>
-                <MenuItems onClick={() => router.push('/trips')} label="My trips" />
-                <MenuItems onClick={() => {}} label="My favorite" />
-                <MenuItems onClick={() => {}} label="My reservation" />
-                <MenuItems onClick={() => {}} label="My properties" />
+                <MenuItems
+                  onClick={() => router.push("/trips")}
+                  label="My trips"
+                />
+                <MenuItems onClick={() => router.push("/favorites")} label="My favorite" />
+                <MenuItems
+                  onClick={() => router.push("/reservations")}
+                  label="My reservation"
+                />
+                <MenuItems onClick={() => router.push("/properties")} label="My properties" />
                 <MenuItems onClick={rentModal.onOpen} label="Air CNC my home" />
                 <MenuItems onClick={() => signOut()} label="Log out" />
               </>
