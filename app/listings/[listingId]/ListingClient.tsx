@@ -5,7 +5,7 @@ import ListingHead from "@/app/components/listings/ListingHead";
 import ListingInfo from "@/app/components/listings/ListingInfo";
 import { categories } from "@/app/components/navbar/Categories";
 import useLoginModal from "@/app/hooks/useLoginModal";
-import { SafeListing, SafeUser } from "@/app/types";
+import { SafeListing, SafeUser, safeReservations } from "@/app/types";
 import { Reservation } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
@@ -25,7 +25,7 @@ const initialdateRange = {
   key: "selection",
 };
 interface ListingClientProps {
-  reservation?: Reservation[];
+  reservation?: safeReservations[];
   listing: SafeListing & {
     user: SafeUser;
   };
@@ -75,7 +75,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
         toast.success("You got yourself a crib!");
         setDateRange(initialdateRange);
         // redirect to /trips
-        router.refresh();
+        router.push('/trips');
       })
       .catch(() => {
         toast.error("Something went wrong while bookin the crib ?!");
